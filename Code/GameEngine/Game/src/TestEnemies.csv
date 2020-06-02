@@ -1,0 +1,2 @@
+Name,Sprite,Death Sound,Encounter rate,Level,HP,Defence,Speed,Attack Name_0,Attack Damage_0,Attack Sound_0,AttackRate_0,Attack Name_1,Attack Damage_1,Attack Sound_1,AttackRate_1,Attack Name_2,Attack Damage_2,Attack Sound_2,AttackRate_2
+<Bee>,<TestSprite.png>,<TestSound.wav>,10.00,5.00,100.00,2.00,50.00,<Stinger Strike>,40.00,<None>,5.00,,,,,,,,

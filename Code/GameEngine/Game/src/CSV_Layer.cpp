@@ -4,6 +4,7 @@ void CSV_Layer::OnLoad()
 {
 	bool loading;
 	loading = CSVData.LoadCSV("src/TestCSV.csv");
+	loading = CSVEnemyData.LoadCSV("src/TestEnemies.csv");
 
 	loading;
 }
@@ -30,35 +31,45 @@ CSV_Layer::CSV_Layer()
 void CSV_Layer::OnGuiDraw()
 {
 
-	CSVData.GetCurrentData()->ReadFullCSV();
+	CSVData.GetCurrentData()->PrintFullCSVData();
 
 	ImGui::Begin("CSV_Test");
-	ImGui::TextWrapped(CSVData.GetCurrentData()->FileName.c_str());
-	
-	ImGui::Checkbox("TestCheckBox", &checkbox);
 
-
-	ImGui::TextWrapped(CSVData.GetCurrentData()->Dialogue.c_str());
-
-
-
-
-	const float spacing = ImGui::GetStyle().ItemSpacing.x;
-	static float buttonWidth = 100;
-	float pos = 0;
-
-	//ImGui::
-	for (int i = 0; i < CSVData.GetCurrentData()->responses.size(); i++)
+	if (ImGui::CollapsingHeader("Dialogue"))
 	{
-		 pos += buttonWidth + spacing;
-		 
+		ImGui::TextWrapped(CSVData.GetCurrentData()->FileName.c_str());
 
-		if (ImGui::Button(CSVData.GetCurrentData()->responses[i].ResponseAsChar(), ImVec2(100, 50)))
-			CSVData.ChangeCurrentData(CSVData.GetCurrentData()->responses[i].NextID);
+		ImGui::Checkbox("TestCheckBox", &checkbox);
 
-		buttonWidth = ImGui::GetItemRectSize().x;
-		ImGui::SameLine(0, 50);
+
+		ImGui::TextWrapped(CSVData.GetCurrentData()->Dialogue.c_str());
+
+
+
+
+		const float spacing = ImGui::GetStyle().ItemSpacing.x;
+		static float buttonWidth = 100;
+		float pos = 0;
+
+		//ImGui::
+		for (int i = 0; i < CSVData.GetCurrentData()->responses.size(); i++)
+		{
+			pos += buttonWidth + spacing;
+
+
+			if (ImGui::Button(CSVData.GetCurrentData()->responses[i].ResponseAsChar(), ImVec2(100, 50)))
+				CSVData.ChangeCurrentData(CSVData.GetCurrentData()->responses[i].NextID);
+
+			buttonWidth = ImGui::GetItemRectSize().x;
+			ImGui::SameLine(0, 50);
+		}
 	}
+
+	if (ImGui::CollapsingHeader("Enemy"))
+	{
+		//Create Enemy Setters and getters
+	}
+
 
 
 	ImGui::End();
