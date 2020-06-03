@@ -27,6 +27,8 @@ void CSV_Base::ReadInt(std::ifstream& _ip, int& _int)
 	string TempString;
 
 	getline(_ip, TempString, ',');
+
+	_int = stoi(TempString);
 	
 }
 

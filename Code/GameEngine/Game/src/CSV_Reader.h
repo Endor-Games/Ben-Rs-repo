@@ -63,19 +63,21 @@ class CSV_Dialogue : CSV_Base
 public:
 	virtual bool LoadCSV(std::string fileLocation) override;
 	Dialogue_struct* GetCurrentData() { return m_CurrentData; }
-	std::string GetFileName() { return m_CurrentData->FileName; }
-	std::string GetFileNameAsChar() { return m_CurrentData->FileName.c_str(); }
-	std::string GetDialogue() { return m_CurrentData->Dialogue; }
-	std::string GetDialogueAsChar() { return m_CurrentData->Dialogue.c_str(); }
+	const std::string GetFileName() { return m_CurrentData->FileName; }
+	const std::string GetFileNameAsChar() { return m_CurrentData->FileName.c_str(); }
+	const std::string GetDialogue() { return m_CurrentData->Dialogue; }
+	const std::string GetDialogueAsChar() { return m_CurrentData->Dialogue.c_str(); }
 
-	Dialogue_Response_struct& GetResponse() { return m_CurrentData->responses[0]; }
-	Dialogue_Response_struct& GetResponse(int _specificResponse) { return m_CurrentData->responses[_specificResponse]; }
-	std::string GetResponseText() { return m_CurrentData->responses[0].ResponseText; }
-	std::string GetResponseText(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText; }
-	const char* GetResponseTextAsChar() { return m_CurrentData->responses[0].ResponseText.c_str(); }
-	const char* GetResponseTextAsChar(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText.c_str(); }
-	int getNextID() { return m_CurrentData->responses[0].NextID; }
-	int getNextID(int _specificResponse) { return m_CurrentData->responses[_specificResponse].NextID; }
+	const Dialogue_Response_struct GetResponse() { return m_CurrentData->responses[0]; }
+	const Dialogue_Response_struct GetResponse(int _specificResponse) { return m_CurrentData->responses[_specificResponse]; }
+
+	//std::string GetResponseText() { return m_CurrentData->responses[0].ResponseText; }
+	//std::string GetResponseText(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText; }
+	//const char* GetResponseTextAsChar() { return m_CurrentData->responses[0].ResponseText.c_str(); }
+	//const char* GetResponseTextAsChar(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText.c_str(); }
+
+	const int getNextID() { return m_CurrentData->responses[0].NextID; }
+	const int getNextID(int _specificResponse) { return m_CurrentData->responses[_specificResponse].NextID; }
 
 	///Changes data based on input
 	void ChangeCurrentData(int _dataIndex) { m_CurrentData = &m_CSVData[_dataIndex]; }
@@ -119,6 +121,27 @@ class CSV_Enemies : CSV_Base
 {
 public:
 	virtual bool LoadCSV(std::string fileLocation) override;
+
+	CSV_Enemy_struct* GetCurrentData() { return m_CurrentData; }
+	CSV_Enemy_struct* GetSpecificData(int _dataIndex) { return &m_CSVData[_dataIndex]; }
+	std::string GetName() { return m_CurrentData->Name; }
+	const char* GetNameAsChar() { return m_CurrentData->Name.c_str(); }
+	std::string GetSprite() { return m_CurrentData->Sprite; }
+	const char* GetSpriteAsChar() { return m_CurrentData->Sprite.c_str(); }
+	std::string GetDeathSound() { return m_CurrentData->DeathSound; }
+	const char* GetDeathSoundAsChar() { return m_CurrentData->DeathSound.c_str(); }
+	const int GetEncounterRate() { return m_CurrentData->EncounterRate; }
+	const int GetLevel() { return m_CurrentData->Level; }
+	const int GetHP() { return m_CurrentData->HP; }
+	const int GetDefence() { return m_CurrentData->Defence; }
+	const int GetSpeed() { return m_CurrentData->Speed; }
+
+	CSV_Attack_struct GetAttack() { return m_CurrentData->PossibleAttacks[0]; }
+	CSV_Attack_struct GetAttack(int _specificAttack) { return m_CurrentData->PossibleAttacks[_specificAttack]; }
+
+	const int GetNumberOfEnemiesInData() { return m_CSVData.size(); }
+
+
 
 private:
 	std::vector<CSV_Enemy_struct> m_CSVData;
