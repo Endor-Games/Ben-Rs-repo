@@ -142,6 +142,9 @@ public:
 	const int GetNumberOfEnemiesInData() { return m_CSVData.size(); }
 
 
+	void CalculateAttack();
+
+
 
 private:
 	std::vector<CSV_Enemy_struct> m_CSVData;

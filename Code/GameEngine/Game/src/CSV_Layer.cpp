@@ -31,7 +31,7 @@ CSV_Layer::CSV_Layer()
 void CSV_Layer::OnGuiDraw()
 {
 
-	CSVData.GetCurrentData()->PrintFullCSVData();
+	//CSVData.GetCurrentData()->PrintFullCSVData();
 
 	ImGui::Begin("CSV_Test");
 
@@ -108,8 +108,8 @@ void CSV_Layer::OnGuiDraw()
 					AppendString.append("\n Attack Rate: ");
 					AppendString.append(std::to_string(CSVEnemyData.GetSpecificData(i)->PossibleAttacks[j].AttackRate));
 
-					if (ImGui::Button(AppendString.c_str(), ImVec2(150, 75)));
-
+					if (ImGui::Button(AppendString.c_str(), ImVec2(150, 75)))
+						CSVEnemyData.CalculateAttack();
 					
 				}
 			}

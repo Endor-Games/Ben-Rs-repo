@@ -1,5 +1,5 @@
 #include "CSV_Reader.h"
-
+#include <random>
 using namespace std;
 
 void CSV_Base::ReadString(std::ifstream& _ip, std::string& _string)
@@ -222,5 +222,44 @@ bool CSV_Enemies::LoadCSV(std::string fileLocation)
 
 	return true;
 
+
+}
+
+void CSV_Enemies::CalculateAttack()
+{
+	vector<int> AttackRates;
+
+	for (CSV_Attack_struct Attacks : m_CurrentData->PossibleAttacks)
+	{
+		AttackRates.push_back(Attacks.AttackRate);
+	}
+
+	int totalAttackRate = 0;
+
+	for (int i = 0; i < AttackRates.size(); i++)
+	{
+		totalAttackRate += AttackRates[i];
+	}
+
+
+	int generatedNumber = rand() % (totalAttackRate + 1);
+
+	cout << "rand Attack = " << generatedNumber << "\n";
+
+
+	
+	int MaxAttackChance = 0;
+
+	for (int i = 0; i < AttackRates.size(); i++)
+	{
+		MaxAttackChance += AttackRates[i];
+		if (generatedNumber <= MaxAttackChance)
+		{
+			cout << "Attack Decleared: " << m_CurrentData->PossibleAttacks[i].AttackName << "\n";
+
+			i = 9999;
+		}
+
+	}
 
 }
