@@ -43,7 +43,7 @@ Enemies are Split into 20 collumns
 - **Death Sound:** The Location of the Sound that will play when the enemy is defeted
 - **Encounter Rate:** The Chance of encountering this enemy in the wild
 - **Level:** The level that is required to start encountering this enemy (5 levels above or bellow)
-- **HP:** How much damage is required to defeate the enemy
+- **HP:** How much damage is required to defeat the enemy
 - **Defence:** ??
 - **Speed:** Determins the turn order for when the enemy will attack (If the enemys speed is higher than the players speed the enemy will attack first.
 
