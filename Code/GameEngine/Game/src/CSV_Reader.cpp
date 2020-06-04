@@ -4,31 +4,31 @@ using namespace std;
 
 void CSV_Base::ReadString(std::ifstream& _ip, std::string& _string)
 {
-	//ignores all characters until it reaches the start of the string
-	_ip.ignore(2, '<');
-	//reads string
-	getline(_ip, _string, '>');
-	//sets to next collumn
-	_ip.ignore(2, ',');
+	
+	_ip.ignore(2, '<'); //ignores all characters until it reaches the start of the string
+
+	getline(_ip, _string, '>'); 	//reads string
+	
+	_ip.ignore(2, ','); //sets to next collumn
 }
 
 void CSV_Base::ReadStringAndEndLine(std::ifstream& _ip, std::string& _string)
 {
-	//ignores all characters until it reaches the start of the string
-	_ip.ignore(2, '<');
-	//reads string
-	getline(_ip, _string, '>');
-	//sets to next collumn
-	_ip.ignore(2, '\n');
+	
+	_ip.ignore(2, '<'); //ignores all characters until it reaches the start of the string
+	
+	getline(_ip, _string, '>'); //reads string
+
+	_ip.ignore(2, '\n'); //sets to next collumn
 }
 
 void CSV_Base::ReadInt(std::ifstream& _ip, int& _int)
 {
 	string TempString;
 
-	getline(_ip, TempString, ',');
+	getline(_ip, TempString, ','); //Reads Line up to the next comma as String
 
-	_int = stoi(TempString);
+	_int = stoi(TempString); //Changes String Value read in from file to an int
 	
 }
 
@@ -36,10 +36,12 @@ void CSV_Base::ReadIntAndEndLine(std::ifstream& _ip, int& _int)
 {
 	string TempString;
 
-	getline(_ip, TempString, '\n');
+	getline(_ip, TempString, '\n'); 
+
+	_int = stoi(TempString); //Changes String Value read in from file to an int
 }
 
-bool CSV_Dialogue::LoadCSV(string fileLocation)
+bool CSV_Dialogue::LoadCSV(std::string fileLocation)
 {
 	ifstream ip(fileLocation);
 
@@ -53,8 +55,8 @@ bool CSV_Dialogue::LoadCSV(string fileLocation)
 	m_CSVData.clear();
 	m_CurrentData = nullptr;
 
-	//ignores first line which explains what each collumn does (until 5000 characters is met or it gets to the end of the line)
-	ip.ignore(5000, '\n');
+	
+	ip.ignore(5000, '\n'); //ignores first line which explains what each collumn does (until 5000 characters is met or it gets to the end of the line)
 
 	int Index = 0;
 	while (ip.peek() != EOF)
@@ -65,7 +67,6 @@ bool CSV_Dialogue::LoadCSV(string fileLocation)
 		out.ID = Index;
 		ReadString(ip, out.FileName);
 
-
 		ReadString(ip, out.Dialogue);
 
 
@@ -74,16 +75,12 @@ bool CSV_Dialogue::LoadCSV(string fileLocation)
 			Dialogue_Response_struct Response;
 			ReadString(ip, ResponseCheck);
 
-			if (ResponseCheck == "n/a" || ResponseCheck == "")
+			if (ResponseCheck == "n/a" || ResponseCheck == "") //If there is  no valid Response skip the rest of the line
 			{
-				if (i == 0)
+				if (i == 0) //If the invalid line is the first line, set it to a default response
 				{
 					Response.ResponseText = "Next";
-					if (i == 3)
-						ReadIntAndEndLine(ip, Response.NextID);
-					else
-						ReadInt(ip, Response.NextID);
-
+					Response.NextID = Index + 1;
 
 					out.responses.push_back(Response);
 				}
@@ -91,18 +88,22 @@ bool CSV_Dialogue::LoadCSV(string fileLocation)
 
 				ip.ignore(5000, '\n');
 				
-				i = 10;
+				i = 10; //End the Loop
 			}
 			else
 			{
 
 				Response.ResponseText = ResponseCheck;
-				if (i == 3)
+
+				if (i == 3) //Checks whether it is the last possible option then ends the line if it is
 					ReadIntAndEndLine(ip, Response.NextID);
 				else
 					ReadInt(ip, Response.NextID);
 
 				out.responses.push_back(Response);
+
+				Response.NextID = 0;
+				Response.ResponseText = "";
 			}
 			
 		}
@@ -121,6 +122,87 @@ bool CSV_Dialogue::LoadCSV(string fileLocation)
 	ip.clear();
 
 	return true;
+}
+
+bool CSV_Dialogue::WriteToCSV(std::string fileName)
+{
+	ofstream myFile(fileName);
+
+	myFile << "Name,Dialogue,Response_Text_0,Response_ID_0,Response_Text_1,Response_ID_1,Response_Text_2,Response_ID_2,Response_Text_3,Response_ID_3 \n"; //Writes the first line
+
+	for (Dialogue_struct& Dialogue : m_CSVData)
+	{
+		string CSVLine = "";
+
+		CSVLine.append(ReturnStringForWriting(Dialogue.FileName, false));
+		CSVLine.append(ReturnStringForWriting(Dialogue.Dialogue, false));
+		
+
+		int index = 0;
+		for (Dialogue_Response_struct& Response : Dialogue.responses)
+		{
+
+			if (Response.ResponseText != "Next")
+			{
+				CSVLine.append(ReturnStringForWriting(Response.ResponseText, false));
+				CSVLine.append(ReturnIntForWriting(Response.NextID, index == 3));
+			}
+			else
+			{
+				CSVLine.append(ReturnStringForWriting("n/a", false));
+				CSVLine.append(ReturnIntForWriting(0, index == 3));
+			}
+				
+
+			index++;
+
+		}
+
+				while (index < 4)
+				{
+					CSVLine.append("\"<n/a>\",");
+
+					if (index != 3)
+						CSVLine.append("0,");
+					else
+						CSVLine.append("0\n");
+
+					index++;
+				}
+
+
+		
+		myFile << CSVLine;
+	}
+
+	return false;
+}
+
+string CSV_Dialogue::ReturnStringForWriting(std::string _string, bool endLine)
+{
+	std::string appendString = "\"<";
+	appendString.append(_string);
+	appendString.append(">\"");
+
+	if (endLine)
+		appendString.append("\n");
+	else
+		appendString.append(",");
+
+	return appendString;
+
+}
+
+string CSV_Dialogue::ReturnIntForWriting(int _int, bool endLine)
+{
+	std::string appendString = std::to_string(_int);
+
+	if (endLine)
+		appendString.append("\n");
+	else
+		appendString.append(",");
+
+	return appendString;
 }
 
 

@@ -5,6 +5,7 @@ void CSV_Layer::OnLoad()
 	bool loading;
 	loading = CSVData.LoadCSV("src/TestCSV.csv");
 	loading = CSVEnemyData.LoadCSV("src/TestEnemies.csv");
+	loading = CSVData.WriteToCSV("src/WritingTest.csv");
 
 	loading;
 }

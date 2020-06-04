@@ -10,6 +10,7 @@ struct Dialogue_Response_struct
 	std::string ResponseText; //The text prompt that appears on the buttons
 	int NextID; //The ID of the next piece of dialogue
 
+	//Prints the contents of the structure to console, used for testing purposes
 	void PrintAsText()
 	{
 		std::cout << "Response Text: " << ResponseText << " Next ID: " << NextID << "\n";
@@ -31,6 +32,7 @@ struct Dialogue_struct
 
 	std::vector<Dialogue_Response_struct> responses; //The options that the player can decide to make
 
+	//Prints the contents of the structure to console, used for testing purposes
 	void PrintFullCSVData()
 	{
 		std::cout << "Name: " << FileName << " Price: " << Dialogue << "\n";
@@ -49,6 +51,7 @@ class CSV_Base
 {
 public :
 	virtual bool LoadCSV(std::string fileLocation) = 0;
+	//virtual bool WriteToCSV(std::string fileName) = 0;
 
 protected:
 	void ReadString(std::ifstream& _ip, std::string& _string); //Automaticlly reads string from CSV
@@ -62,6 +65,18 @@ class CSV_Dialogue : CSV_Base
 {
 public:
 	virtual bool LoadCSV(std::string fileLocation) override;
+
+
+	//CSV Writing Begin
+	//Takes the contents of the dialogue and writes it to a CSV (Used mainly for testing)
+	bool WriteToCSV(std::string fileName);
+	//Adds CSV specific cases to string for writing it to the file
+	std::string ReturnStringForWriting(std::string _string, bool endLine);
+	//Changes int value to string then adds CSV specific cases for it to write to file
+	std::string ReturnIntForWriting(int _int, bool endLine);
+
+	//CSV Writing End
+
 	Dialogue_struct* GetCurrentData() { return m_CurrentData; }
 	const std::string GetFileName() { return m_CurrentData->FileName; }
 	const std::string GetFileNameAsChar() { return m_CurrentData->FileName.c_str(); }
@@ -71,22 +86,22 @@ public:
 	const Dialogue_Response_struct GetResponse() { return m_CurrentData->responses[0]; }
 	const Dialogue_Response_struct GetResponse(int _specificResponse) { return m_CurrentData->responses[_specificResponse]; }
 
-	//std::string GetResponseText() { return m_CurrentData->responses[0].ResponseText; }
-	//std::string GetResponseText(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText; }
-	//const char* GetResponseTextAsChar() { return m_CurrentData->responses[0].ResponseText.c_str(); }
-	//const char* GetResponseTextAsChar(int _specificResponse) { return m_CurrentData->responses[_specificResponse].ResponseText.c_str(); }
 
 	const int getNextID() { return m_CurrentData->responses[0].NextID; }
 	const int getNextID(int _specificResponse) { return m_CurrentData->responses[_specificResponse].NextID; }
 
 	///Changes data based on input
-	void ChangeCurrentData(int _dataIndex) { m_CurrentData = &m_CSVData[_dataIndex]; }
+	void ChangeCurrentData(int _dataIndex)
+	{ 
+		if(_dataIndex < m_CSVData.size())
+			m_CurrentData = &m_CSVData[_dataIndex]; 
+	}
 
 
 	
 private:
-	std::vector<Dialogue_struct> m_CSVData;
-	Dialogue_struct* m_CurrentData; ///the current data being stored in 
+	std::vector<Dialogue_struct> m_CSVData; //Contains all the Dialogue loaded from the CSV File
+	Dialogue_struct* m_CurrentData; //The current data being used by the UI
 	
 
 };
@@ -112,7 +127,7 @@ struct CSV_Enemy_struct
 	int Defence;
 	int Speed; //Determins when the enemy will declare an attack against the player (might be changed to an attack specific speed)
 
-	std::vector<CSV_Attack_struct> PossibleAttacks;
+	std::vector<CSV_Attack_struct> PossibleAttacks; //An array of all the possible attacks the enemy can make
 };
 
 
@@ -121,13 +136,20 @@ class CSV_Enemies : CSV_Base
 {
 public:
 	virtual bool LoadCSV(std::string fileLocation) override;
-
-	CSV_Enemy_struct* GetCurrentData() { return m_CurrentData; }
+	
+	//Returns data currently being used
+	CSV_Enemy_struct* GetCurrentData() { return m_CurrentData; } 
+	//Gets Data from array
 	CSV_Enemy_struct* GetSpecificData(int _dataIndex) { return &m_CSVData[_dataIndex]; }
+	//returns the name of the enemy
 	std::string GetName() { return m_CurrentData->Name; }
+	//Returns the name of the enemy as a "const char*"
 	const char* GetNameAsChar() { return m_CurrentData->Name.c_str(); }
+	//Returns the enemy's sprite (Currently returns the file location as a string however it will be replaced by the actual sprite)
 	std::string GetSprite() { return m_CurrentData->Sprite; }
+	//Returns the file location of the sprite (as a "const char*") used for test purposes
 	const char* GetSpriteAsChar() { return m_CurrentData->Sprite.c_str(); }
+
 	std::string GetDeathSound() { return m_CurrentData->DeathSound; }
 	const char* GetDeathSoundAsChar() { return m_CurrentData->DeathSound.c_str(); }
 	const int GetEncounterRate() { return m_CurrentData->EncounterRate; }
@@ -141,10 +163,8 @@ public:
 
 	const int GetNumberOfEnemiesInData() { return m_CSVData.size(); }
 
-
+	//A test function to determin what attack the enemy will use against the player using the total attack rate
 	void CalculateAttack();
-
-
 
 private:
 	std::vector<CSV_Enemy_struct> m_CSVData;

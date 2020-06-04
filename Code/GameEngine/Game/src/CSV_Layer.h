@@ -24,7 +24,7 @@ private:
 
 	void Option1();
 
-	
+
 	CSV_Dialogue CSVData; ///The Current data being used by the UI
 	CSV_Enemies CSVEnemyData;
 };

@@ -1,3 +1,3 @@
-Name,Sprite,Death Sound,Encounter rate,Level,HP,Defence,Speed,Attack Name_0,Attack Damage_0,Attack Sound_0,AttackRate_0,Attack Name_1,Attack Damage_1,Attack Sound_1,AttackRate_1,Attack Name_2,Attack Damage_2,Attack Sound_2,AttackRate_2
+Name (String),Sprite (String),Death Sound (String),Encounter rate (Int),Level (int),HP (int),Defence (int),Speed (int),Attack Name_0 (String),Attack Damage_0 (int),Attack Sound_0 (String),AttackRate_0 (int),Attack Name_1 (String),Attack Damage_1 (int),Attack Sound_1 (String),AttackRate_1 (int),Attack Name_2 (String),Attack Damage_2 (int),Attack Sound_2 (String),AttackRate_2 (int)
 <Bee>,<TestSprite.png>,<TestSound.wav>,10,5,100,2,50,<Stinger Strike>,40,<None>,10,<Hammer Hammer>,10,<None>,5,<Super Ultra Mega Bast of Destruction>,2000,<none>,2
 <Bear>,<TestSprite.png>,<TestSound.wav>,5,10,200,5,20,<Maul>,40,<None>,10,<n/a>,,,,,,,
