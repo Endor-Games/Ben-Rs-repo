@@ -50,7 +50,9 @@ struct Dialogue_struct
 class CSV_Base
 {
 public :
-	virtual bool LoadCSV(std::string fileLocation) = 0;
+	virtual bool LoadCSV(std::string fileLocation, bool removeSep) = 0;
+	virtual void RenderGUI() = 0;
+	virtual bool WriteToCSV(std::string fileName) = 0;
 	//virtual bool WriteToCSV(std::string fileName) = 0;
 
 protected:
@@ -59,21 +61,25 @@ protected:
 
 	void ReadInt(std::ifstream& _ip, int& _int); //Automaticly reads value as string then changes it into an int
 	void ReadIntAndEndLine(std::ifstream& _ip, int& _int);
+
+	//Adds CSV specific cases to string for writing it to the file
+	std::string ReturnStringForWriting(std::string _string, bool endLine);
+	//Changes int value to string then adds CSV specific cases for it to write to file
+	std::string ReturnIntForWriting(int _int, bool endLine);
+
+
 };
 
 class CSV_Dialogue : CSV_Base
 {
 public:
-	virtual bool LoadCSV(std::string fileLocation) override;
-
+	virtual bool LoadCSV(std::string fileLocation, bool removeSep) override;
+	virtual void RenderGUI();
 
 	//CSV Writing Begin
 	//Takes the contents of the dialogue and writes it to a CSV (Used mainly for testing)
-	bool WriteToCSV(std::string fileName);
-	//Adds CSV specific cases to string for writing it to the file
-	std::string ReturnStringForWriting(std::string _string, bool endLine);
-	//Changes int value to string then adds CSV specific cases for it to write to file
-	std::string ReturnIntForWriting(int _int, bool endLine);
+	virtual bool WriteToCSV(std::string fileName) override;
+
 
 	//CSV Writing End
 
@@ -124,6 +130,7 @@ struct CSV_Enemy_struct
 	int EncounterRate; //The likelyhood of encountering the enemy
 	int Level; //Whether the enemy can be encountered (depending on players level)
 	int HP;
+	int Attack;
 	int Defence;
 	int Speed; //Determins when the enemy will declare an attack against the player (might be changed to an attack specific speed)
 
@@ -135,8 +142,10 @@ struct CSV_Enemy_struct
 class CSV_Enemies : CSV_Base
 {
 public:
-	virtual bool LoadCSV(std::string fileLocation) override;
-	
+	virtual bool LoadCSV(std::string fileLocation, bool removeSep) override;
+	virtual void RenderGUI();
+	virtual bool WriteToCSV(std::string fileName) override;
+
 	//Returns data currently being used
 	CSV_Enemy_struct* GetCurrentData() { return m_CurrentData; } 
 	//Gets Data from array
@@ -164,7 +173,7 @@ public:
 	const int GetNumberOfEnemiesInData() { return m_CSVData.size(); }
 
 	//A test function to determin what attack the enemy will use against the player using the total attack rate
-	void CalculateAttack();
+	void CalculateAttack(int AttackingEnemy);
 
 private:
 	std::vector<CSV_Enemy_struct> m_CSVData;
