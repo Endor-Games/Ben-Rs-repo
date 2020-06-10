@@ -10,17 +10,21 @@ int main()
     std::cout << "Hello World!\n";
 
 	Grid grid;
-
-	grid.CreateGrid(5);
 	Float2 Position(0, 0);
-
 	std::string input;
+	int gridSize;
+
+	std::cout << "How Large is the Grid??:      ";
+	std::cin >> gridSize;
+
+	grid.CreateGrid(gridSize);
+
 
 	while (programRuning)
 	{
 		std::cout << "\n Player Location = " << Position.x << " X " << Position.y << " Please Enter direction for movement   ";
 
-		std::cin >> input;
+		std::cin >> input; //Read Player Input
 
 		grid.MovePlayer(Position, input);
 	}

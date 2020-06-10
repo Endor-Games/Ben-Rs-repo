@@ -1,4 +1,13 @@
-﻿  Grid Movement Test.cpp
+﻿  Grid.cpp
 D:\Ben-Rs-repo\Code\Grid Movement Test\Maths.h(17,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\Ben-Rs-repo\Code\Grid Movement Test\Maths.h(17,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(11,20): warning C4018: '<': signed/unsigned mismatch
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(54,28): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(54,44): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(74,28): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(74,44): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(93,31): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(93,45): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(112,31): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Grid.cpp(112,45): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
   Grid Movement Test.vcxproj -> D:\Ben-Rs-repo\Code\Grid Movement Test\Debug\Grid Movement Test.exe

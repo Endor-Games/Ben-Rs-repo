@@ -1,0 +1,4 @@
+﻿  Grid Movement Test.cpp
+D:\Ben-Rs-repo\Code\Grid Movement Test\Maths.h(17,6): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Ben-Rs-repo\Code\Grid Movement Test\Maths.h(17,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Grid Movement Test.vcxproj -> D:\Ben-Rs-repo\Code\Grid Movement Test\x64\Debug\Grid Movement Test.exe

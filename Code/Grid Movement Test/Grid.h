@@ -20,6 +20,8 @@ class Grid
 public:
 
 	void CreateGrid(int size);
+
+	//Moves the Players location based on The Grid
 	void MovePlayer(Float2& PlayerPos, std::string input);
 
 

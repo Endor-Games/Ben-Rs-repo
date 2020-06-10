@@ -28,7 +28,7 @@ void Grid::CreateGrid(int size)
 			if (random)
 				tile.TileType = "Ground";
 			else
-				tile.TileType = "Water";
+				tile.TileType = "Ground"; //"Water" can be used to prevent player movement
 
 
 			tile.readTile();
