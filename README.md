@@ -70,7 +70,7 @@ Enemies are Split into 20 columns
 - **Attack Animation:** The location of the animation which will play when an attack is used.
 - **Attack Sound:**     The location of the sound which will play when an attack is used.
 - **Attack Power:**     How used with the players Attack stat to determin how much damage the enemy will take when the attack is used.
-- **Attack Accuracy:**  How likely the attack is to hit the enemy.
+- **Attack Accuracy:**  How likely the attack is to hit the enemy. This is calculated by randomly generating a number between 0 and 100 and if the number is less than or equal to the generated number, the attack will hit, otherwise the attack will miss.
 - **Attack Cost:**      How much of the players SP will be used in order to use the attack.
 - **Class:**            What player class is required in order to learn this attack.
 - **Unlock LVL:**       What level the player needs to be before it can learn the attack.
