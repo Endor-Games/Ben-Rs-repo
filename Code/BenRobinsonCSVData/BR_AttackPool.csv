@@ -1,0 +1,9 @@
+Attack Name (String),Attack Animation (String),Attack Sound (String),Attack Power (int),Attack Accuracy (int),Attack Cost (int),Class (String),Unlock LVL (int)
+<Punch>,<TestSprite.png>,<beat.wav>,40,95,0,<Wild Card>,0
+<Kick>,<TestSprite.png>,<beat.wav>,80,55,0,<Wild Card>,0
+<Fire ball>,<TestSprite.png>,<beat.wav>,120,75,10,<Wild Card>,0
+<Fire Punch>,<TestSprite.png>,<beat.wav>,80,95,2,<Wild Card>,2
+<Magic Missile>,<TestSprite.png>,<beat.wav>,100,100,7,<Wild Card>,4
+<Scream>,<TestSprite.png>,<beat.wav>,200,100,30,<Wild Card>,6
+<Super Punch>,<TestSprite.png>,<beat.wav>,70,100,0,<Wild Card>,6
+<Doom Blast>,<TestSprite.png>,<beat.wav>,999,10,20,<Wild Card>,10

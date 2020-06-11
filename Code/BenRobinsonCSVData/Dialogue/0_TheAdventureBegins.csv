@@ -1,0 +1,9 @@
+Name,Dialogue,Response_Text_0,Response_ID_0,Response_Text_1,Response_ID_1,Response_Text_2,Response_ID_2,Response_Text_3,Response_ID_3
+<The Handsome Narator>,<You wake up in your bed ready to start the day.>,<Stay in bed>,1,<Get Out of bed>,2,<n/a>,0,<n/a>,0
+<The Handsome Narator>,<While you contemplate staying in bed for the rest of your life you decide against this decision>,<Get Out of bed>,2,<n/a>,0,<n/a>,0,<n/a>,0
+<The Handsome Narator>,<You walk down the stairs and head into your kitchen to enjoy your favorite cereal>,<Pour the Cereal>,3,<n/a>,0,<n/a>,0,<n/a>,0
+<The Handsome Narator>,<After putting the cereal into the bowl you realise a horible truth>,<Next>,4,<n/a>,0,<n/a>,0,<n/a>,0
+<You inside your head>,"<Oh no the milk is out of date, What am I going to do!!!>",<Head out to the shops>,5,"<Pour the milk, its only by a day, whats the worst that could happen…........>",6,"<Milk is overrated, eat it without Milk>",7,<n/a>,0
+<The Handsome Narator>,"<With that decliration of getting more milk from the local shop, Your grand adventure finally begins>",<Lets go!!!!!!>,-1,<n/a>,0,<n/a>,0,<n/a>,0
+<The Handsome Narator>,"<Unfortunatly the worst did happen, the milk was so bad that you passed out the moment the cereal touched your mouth>",<Game Over. Try Again??>,0,<n/a>,0,<n/a>,0,<n/a>,1
+<You inside your head>,"<What am I thinking , Why would I eat my cereal without milk, I need to think about this again>",<Think about this again>,4,<n/a>,0,<n/a>,2,<n/a>,2

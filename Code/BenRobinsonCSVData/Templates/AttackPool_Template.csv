@@ -1,0 +1,2 @@
+Attack Name (String),Attack Animation (String),Attack Sound (String),Attack Power (int),Attack Accuracy (int),Attack Cost (int),Class (String),Unlock LVL (int)
+<One-Two Punch>,<TestSprite.png>,<beat.wav>,0,0,0,<>,0

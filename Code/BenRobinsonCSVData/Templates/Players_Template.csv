@@ -1,0 +1,5 @@
+Name (String),Sprite (String),Death Sound (String),HP (int),SP (int),Attack (int),Defence (int),Speed (int)
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0

@@ -1,0 +1,2 @@
+Name (String),Sprite (String),Death Sound (String),HP (int),SP (int),Attack (int),Defence (int),Speed (int),Class (String)
+<Protagonist>,<TestSprite.png>,<PUHUHUHUHU.ogg>,250,110,7,5,40,<Wild Card>

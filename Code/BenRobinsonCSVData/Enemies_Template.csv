@@ -1,0 +1,3 @@
+Name (String),Sprite (String),Death Sound (String),Encounter rate (Int),Level (int),HP (int),Attack (int),Defence (int),Speed (int),Attack Name_0,Attack Sound_0,Attack Power_0,Attack Accuracy_0,Attack Rate_0,Attack Name_1,Attack Sound_1,Attack Power_1,Attack Accuracy_1,Attack Rate_1,Attack Name_2,Attack Sound_2,Attack Power_2,Attack Accuracy_2,Attack Rate_2
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0,0,<Name>,<Sound.ogg>,0,0,0,<Name>,<Sound.ogg>,0,0,0,<Name>,<Sound.ogg>,0,0,0
+<Name>,<Sprite.png>,<Sound.ogg>,0,0,0,0,0,0,<Name>,<Sound.ogg>,0,0,0,<n/a>,<n/a>,0,0,0,<n/a>,<n/a>,0,0,0
